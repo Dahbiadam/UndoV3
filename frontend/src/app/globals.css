@@ -1,0 +1,435 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* iOS 26 Liquid Glass Design System Variables */
+:root {
+  /* Light Mode Colors */
+  --color-background: 242, 242, 247; /* #F2F2F7 */
+  --color-surface: 255, 255, 255; /* #FFFFFF */
+  --color-surface-transparent: 255, 255, 255, 0.72;
+  --color-surface-elevated: 255, 255, 255, 0.85;
+  --color-surface-overlay: 255, 255, 255, 0.95;
+
+  /* Text Colors */
+  --color-text-primary: 0, 0, 0, 0.9;
+  --color-text-secondary: 0, 0, 0, 0.6;
+  --color-text-tertiary: 0, 0, 0, 0.4;
+  --color-text-inverse: 255, 255, 255, 0.9;
+
+  /* iOS Semantic Colors */
+  --color-system-blue: 0, 122, 255; /* #007AFF */
+  --color-system-blue-dark: 10, 132, 255; /* #0A84FF */
+  --color-system-green: 52, 199, 89; /* #34C759 */
+  --color-system-green-dark: 48, 209, 88; /* #30D158 */
+  --color-system-orange: 255, 149, 0; /* #FF9500 */
+  --color-system-orange-dark: 255, 204, 2; /* #FFCC02 */
+  --color-system-red: 255, 59, 48; /* #FF3B30 */
+  --color-system-red-dark: 255, 69, 58; /* #FF453A */
+  --color-system-yellow: 255, 204, 0; /* #FFCC00 */
+  --color-system-purple: 175, 82, 222; /* #AF52DE */
+  --color-system-pink: 255, 45, 146; /* #FF2D92 */
+  --color-system-indigo: 88, 86, 214; /* #5856D6 */
+  --color-system-teal: 48, 176, 199; /* #30B0C7 */
+
+  /* Recovery App Colors */
+  --color-recovery-success: var(--color-system-green);
+  --color-recovery-warning: var(--color-system-orange);
+  --color-recovery-danger: var(--color-system-red);
+  --color-recovery-info: var(--color-system-blue);
+  --color-recovery-calm: 107, 114, 128; /* #6B7280 */
+  --color-recovery-neutral: 156, 163, 175; /* #9CA3AF */
+
+  /* Mood Colors */
+  --color-mood-excellent: 16, 185, 129; /* #10B981 */
+  --color-mood-good: 52, 211, 153; /* #34D399 */
+  --color-mood-moderate: 252, 211, 77; /* #FCD34D */
+  --color-mood-low: 251, 146, 60; /* #FB923C */
+  --color-mood-poor: 239, 68, 68; /* #EF4444 */
+
+  /* Glass Effect Variables */
+  --glass-background-light: rgba(255, 255, 255, 0.25);
+  --glass-background-dark: rgba(0, 0, 0, 0.25);
+  --glass-blur-amount: 20px;
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+
+  /* Typography Scale */
+  --font-size-caption-2: 11pt;
+  --font-size-caption-1: 12pt;
+  --font-size-footnote: 13pt;
+  --font-size-subhead: 15pt;
+  --font-size-callout: 16pt;
+  --font-size-body: 17pt;
+  --font-size-headline: 17pt;
+  --font-size-title-3: 20pt;
+  --font-size-title-2: 22pt;
+  --font-size-title-1: 28pt;
+  --font-size-large-title: 34pt;
+
+  /* Spacing Scale */
+  --spacing-base: 8pt;
+  --border-radius-small: 8pt;
+  --border-radius-medium: 12pt;
+  --border-radius-large: 16pt;
+  --border-radius-xl: 24pt;
+
+  /* Animation Variables */
+  --animation-duration-fast: 200ms;
+  --animation-duration-standard: 350ms;
+  --animation-duration-slow: 500ms;
+  --animation-spring-out: cubic-bezier(0.33, 0, 0, 1);
+  --animation-spring-in: cubic-bezier(0, 0, 0.66, 1);
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Colors */
+    --color-background: 0, 0, 0; /* #000000 */
+    --color-surface: 28, 28, 30; /* #1C1C1E */
+    --color-surface-transparent: 28, 28, 30, 0.72;
+    --color-surface-elevated: 28, 28, 30, 0.85;
+    --color-surface-overlay: 28, 28, 30, 0.95;
+
+    /* Text Colors */
+    --color-text-primary: 255, 255, 255, 0.9;
+    --color-text-secondary: 255, 255, 255, 0.6;
+    --color-text-tertiary: 255, 255, 255, 0.4;
+    --color-text-inverse: 0, 0, 0, 0.9;
+
+    /* Glass Effect Variables */
+    --glass-background-light: rgba(0, 0, 0, 0.25);
+    --glass-border-light: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-feature-settings: 'kern' 1;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-text-primary));
+    font-size: var(--font-size-body);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-system-blue));
+    outline-offset: 2px;
+    border-radius: var(--border-radius-small);
+  }
+
+  /* Selection styles */
+  ::selection {
+    background: rgb(var(--color-system-blue) / 0.2);
+    color: rgb(var(--color-text-primary));
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-text-tertiary));
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-text-secondary));
+    background-clip: content-box;
+  }
+}
+
+/* Glass Morphism Component Styles */
+@layer components {
+  .glass-morphism {
+    background: rgb(var(--color-surface-transparent));
+    backdrop-filter: blur(var(--glass-blur-amount));
+    -webkit-backdrop-filter: blur(var(--glass-blur-amount));
+    border: 0.5px solid rgb(var(--glass-border-light));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .glass-morphism-elevated {
+    background: rgb(var(--color-surface-elevated));
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 0.5px solid rgb(var(--glass-border-light));
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .glass-morphism-overlay {
+    background: rgb(var(--color-surface-overlay));
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 0.5px solid rgb(var(--glass-border-light));
+  }
+
+  .floating-card {
+    @apply glass-morphism rounded-2xl p-6;
+  }
+
+  .glass-button {
+    @apply glass-morphism rounded-xl px-6 py-3;
+    transition: all var(--animation-duration-standard) var(--animation-spring-out);
+  }
+
+  .glass-button:hover {
+    background: rgb(var(--color-surface-elevated));
+    transform: translateY(-1px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+    background: rgb(var(--color-surface-transparent));
+  }
+}
+
+/* Typography Utilities */
+@layer utilities {
+  .text-large-title {
+    font-size: var(--font-size-large-title);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5pt;
+  }
+
+  .text-title-1 {
+    font-size: var(--font-size-title-1);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5pt;
+  }
+
+  .text-title-2 {
+    font-size: var(--font-size-title-2);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5pt;
+  }
+
+  .text-title-3 {
+    font-size: var(--font-size-title-3);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.5pt;
+  }
+
+  .text-headline {
+    font-size: var(--font-size-headline);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.5pt;
+  }
+
+  .text-body {
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .text-callout {
+    font-size: var(--font-size-callout);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .text-subhead {
+    font-size: var(--font-size-subhead);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .text-footnote {
+    font-size: var(--font-size-footnote);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .text-caption-1 {
+    font-size: var(--font-size-caption-1);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  .text-caption-2 {
+    font-size: var(--font-size-caption-2);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+}
+
+/* Animation Utilities */
+@layer utilities {
+  .spring-transition {
+    transition: all var(--animation-duration-standard) var(--animation-spring-out);
+  }
+
+  .spring-bounce {
+    animation: spring-bounce 0.6s var(--animation-spring-out);
+  }
+
+  @keyframes spring-bounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(var(--color-system-blue) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(var(--color-system-blue) / 0.8);
+    }
+  }
+}
+
+/* Emergency Mode Styles */
+@layer components {
+  .emergency-overlay {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .emergency-button {
+    background: rgb(var(--color-system-red));
+    color: white;
+    font-size: var(--font-size-title-1);
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all var(--animation-duration-standard) var(--animation-spring-out);
+    box-shadow: 0 20px 25px -5px rgba(255, 59, 48, 0.3), 0 10px 10px -5px rgba(255, 59, 48, 0.2);
+  }
+
+  .emergency-button:hover {
+    background: rgb(var(--color-system-red-dark));
+    transform: scale(1.05);
+    box-shadow: 0 25px 50px -12px rgba(255, 59, 48, 0.5);
+  }
+
+  .emergency-button:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Breathing Animation Styles */
+@layer utilities {
+  .breathing-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(var(--color-system-blue)), rgb(var(--color-system-teal)));
+    animation: breathing-cycle 5s ease-in-out infinite;
+  }
+
+  @keyframes breathing-cycle {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    25% { transform: scale(1.3); opacity: 0.9; }
+    50% { transform: scale(1.4); opacity: 1; }
+    75% { transform: scale(1.2); opacity: 0.9; }
+  }
+}
+
+/* Responsive Design Utilities */
+@layer utilities {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-area-all {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* Loading States */
+@layer utilities {
+  .skeleton {
+    background: linear-gradient(90deg, rgb(var(--color-surface-transparent)) 25%, rgb(var(--color-surface)) 50%, rgb(var(--color-surface-transparent)) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .glass-morphism {
+    background: white !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
