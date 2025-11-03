@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { LoadingScreen } from '@/components/LoadingScreen';
 
-export default function HomePage() {
+export default function CompletePage() {
   const router = useRouter();
   const { user, isLoading } = useAuthStore();
 
