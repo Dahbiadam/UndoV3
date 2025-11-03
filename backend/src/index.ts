@@ -116,7 +116,7 @@ class App {
     this.app.use(validationMiddleware);
 
     // Health check endpoint (before auth middleware)
-    this.app.get('/health', (req, res) => {
+    this.app.get('/health', (_req, res) => {
       res.status(200).json({
         status: 'healthy',
         timestamp: new Date().toISOString(),
