@@ -122,7 +122,7 @@ class App {
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
         environment: config.env,
-        version: process.env.npm_package_version || '1.0.0',
+        version: process.env['npm_package_version'] || '1.0.0',
       });
     });
   }
