@@ -63,7 +63,7 @@ apiRouter.post('/coach/chat', (req, res) => {
   });
 });
 
-apiRouter.post('/coach/crisis', (req, res) => {
+apiRouter.post('/coach/crisis', (_req, res) => {
   res.json({
     success: true,
     data: {
