@@ -145,7 +145,7 @@ class App {
     this.app.use(`/api/${config.api.version}`, apiRouter);
 
     // Root endpoint
-    this.app.get('/', (req, res) => {
+    this.app.get('/', (_req, res) => {
       res.json({
         message: 'UNDO Recovery App API',
         version: config.api.version,
