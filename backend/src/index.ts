@@ -167,7 +167,7 @@ class App {
     this.io.use(async (socket, next) => {
       try {
         // Authenticate socket connections
-        const token = socket.handshake.auth.token;
+        const token = socket.handshake.auth['token'];
         if (!token) {
           return next(new Error('Authentication token required'));
         }
