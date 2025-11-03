@@ -20,7 +20,7 @@ app.get('/health', (_req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({
     message: 'UNDO Recovery App API',
     version: 'v1',
