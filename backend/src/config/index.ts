@@ -140,7 +140,7 @@ export const validateConfig = () => {
     'MONGODB_URI',
     'JWT_SECRET',
     'JWT_REFRESH_SECRET',
-    'OPENAI_API_KEY',
+    'OPENROUTER_API_KEY',
   ];
 
   const missingVars = requiredVars.filter(varName => !process.env[varName]);
