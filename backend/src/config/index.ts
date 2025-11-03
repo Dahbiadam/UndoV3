@@ -30,10 +30,13 @@ export const config = {
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   },
 
-  // OpenAI
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY || '',
-    model: process.env.OPENAI_MODEL || 'gpt-4-turbo-preview',
+  // OpenRouter (GPT-5)
+  openRouter: {
+    apiKey: process.env.OPENROUTER_API_KEY || '',
+    model: process.env.OPENROUTER_MODEL || 'openai/gpt-5',
+    baseURL: process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1',
+    siteUrl: process.env.OPENROUTER_SITE_URL || 'https://undo-app.com',
+    siteName: process.env.OPENROUTER_SITE_NAME || 'UNDO Recovery App',
   },
 
   // Email
@@ -137,7 +140,7 @@ export const validateConfig = () => {
     'MONGODB_URI',
     'JWT_SECRET',
     'JWT_REFRESH_SECRET',
-    'OPENAI_API_KEY',
+    'OPENROUTER_API_KEY',
   ];
 
   const missingVars = requiredVars.filter(varName => !process.env[varName]);
