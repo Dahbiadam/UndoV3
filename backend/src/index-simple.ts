@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = Number(process.env['PORT']) || 3001;
 
 // Middleware
 app.use(cors({
@@ -12,7 +12,7 @@ app.use(cors({
 app.use(express.json());
 
 // Basic routes
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -20,7 +20,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({
     message: 'UNDO Recovery App API',
     version: 'v1',
@@ -63,7 +63,7 @@ apiRouter.post('/coach/chat', (req, res) => {
   });
 });
 
-apiRouter.post('/coach/crisis', (req, res) => {
+apiRouter.post('/coach/crisis', (_req, res) => {
   res.json({
     success: true,
     data: {
