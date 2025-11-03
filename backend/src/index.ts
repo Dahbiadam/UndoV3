@@ -116,13 +116,13 @@ class App {
     this.app.use(validationMiddleware);
 
     // Health check endpoint (before auth middleware)
-    this.app.get('/health', (req, res) => {
+    this.app.get('/health', (_req, res) => {
       res.status(200).json({
         status: 'healthy',
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
         environment: config.env,
-        version: process.env.npm_package_version || '1.0.0',
+        version: process.env['npm_package_version'] || '1.0.0',
       });
     });
   }
@@ -145,7 +145,7 @@ class App {
     this.app.use(`/api/${config.api.version}`, apiRouter);
 
     // Root endpoint
-    this.app.get('/', (req, res) => {
+    this.app.get('/', (_req, res) => {
       res.json({
         message: 'UNDO Recovery App API',
         version: config.api.version,
@@ -167,7 +167,7 @@ class App {
     this.io.use(async (socket, next) => {
       try {
         // Authenticate socket connections
-        const token = socket.handshake.auth.token;
+        const token = socket.handshake.auth['token'];
         if (!token) {
           return next(new Error('Authentication token required'));
         }

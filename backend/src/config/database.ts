@@ -22,8 +22,12 @@ class DatabaseConnection {
   private getConfig(): DatabaseConfig {
     const uri = process.env.MONGODB_URI;
 
-    if (!uri) {
-      throw new Error('MONGODB_URI environment variable is not defined');
+    if (!uri || uri.includes('MONGODB_URI')) {
+      // Return placeholder for development without MongoDB
+      return {
+        uri: 'mongodb://localhost:27017/undo_dev',
+        options: {},
+      };
     }
 
     const options: mongoose.ConnectOptions = {
