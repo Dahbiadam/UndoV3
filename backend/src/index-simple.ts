@@ -12,7 +12,7 @@ app.use(cors({
 app.use(express.json());
 
 // Basic routes
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
